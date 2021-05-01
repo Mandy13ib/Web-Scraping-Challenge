@@ -8,22 +8,20 @@ import pymongo
 import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-#executable_path = {'executable_path': ChromeDriverManager().install()}
-#browser = Browser('chrome', **executable_path, headless=False)
+executable_path = {'executable_path': ChromeDriverManager().install()}
+browser = Browser('chrome', **executable_path, headless=False)
 
 # Initialize Browser
 def init_Browser():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     return Browser('chrome', **executable_path, headless=False)
 
-
 # Create scraping function
 def scrape():
     mars_dict = {}
     browser = init_Browser()
 
-    # Nasa News
-    # url to scrape
+    # Nasa News and url to scrape
     url = 'https://mars.nasa.gov/news/'
 
     # Retrieve page with the requests module
@@ -63,9 +61,7 @@ def scrape():
     featured_imageURL = jplurl + image_path
     
 
-    # featured_image
-    # Mars Facts
-    # Scrape table
+    # featured_image, mars Facts and scrape table
     facts_url = 'https://space-facts.com/mars/'
 
     # Retrieve table
@@ -79,9 +75,7 @@ def scrape():
     mars_html_table = mars_facts_df.to_html(index=False)
 
 
-    # Mars Hemispheres
-    # Set up urls
-    # import time
+    # Mars Hemispheres, set up urls and import time
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
     time.sleep(1)

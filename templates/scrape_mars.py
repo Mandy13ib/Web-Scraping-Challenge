@@ -34,8 +34,7 @@ def scrape():
 
     # Store first head line as news_title
     news_title = soup.find_all('div', class_='content_title')
-    # print(news_title)
-
+   
    # Scrape NASA website for News for paragraph and assign text to a variable
     browser.visit(url)
     html = browser.html
@@ -43,7 +42,6 @@ def scrape():
     news_para = soup.find_all('div', class_="article_teaser_body")
     news_Title = news_title[0].text
     news_p = news_para[0].text
-    # print(news_p)
 
     # New url
     jplurl = 'https://spaceimages-mars.com/'
@@ -63,9 +61,7 @@ def scrape():
     featured_imageURL = jplurl + image_path
     
 
-    # featured_image
-    # Mars Facts
-    # Scrape table
+    # featured_image, mars facts, scrape table
     facts_url = 'https://space-facts.com/mars/'
 
     # Retrieve table
@@ -79,9 +75,7 @@ def scrape():
     mars_html_table = mars_facts_df.to_html(index=False)
 
 
-    # Mars Hemispheres
-    # Set up urls
-    # import time
+    # Mars Hemispheres, set up urls and import time
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
     time.sleep(1)
@@ -99,7 +93,6 @@ def scrape():
         image_Soup = bs(image_HTML, 'html.parser')
         image_links = usgs_url + image_Soup.find('img', {'class': 'wide-image'})['src']
         hem_images.append({'title': title, 'img_url': image_links})
-    # print(hem_images)
 
     # Create dictionary for all info scraped from sources above
     mars_dict = {
