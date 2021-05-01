@@ -1,6 +1,6 @@
 # import depend
 from flask import Flask, render_template, redirect
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo #note: must add "pip install pymongo" in terminal
 # import the scraping script
 import scrape_mars
 
